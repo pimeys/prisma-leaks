@@ -2,7 +2,7 @@
 
 module.exports = {
   displayName: "test",
-  verbose: true,
+  verbose: false,
   collectCoverage: false,
   silent: true,
 };
