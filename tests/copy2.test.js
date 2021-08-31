@@ -1,6 +1,8 @@
-const prisma = require("../src");
+const { PrismaClient } = require("@prisma/client");
 
 it("might leak", async () => {
+  const prisma = new PrismaClient();
+
   await prisma.user.deleteMany();
   const user = await prisma.user.create({
     data: {
@@ -8,4 +10,6 @@ it("might leak", async () => {
     },
   });
   expect(user).toBeTruthy();
+
+  await prisma.$disconnect();
 });
