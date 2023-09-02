@@ -1,9 +1,9 @@
 const { PrismaClient } = require("@prisma/client");
 
 async function main() {
-  var prisma = new PrismaClient();
+  var prisma = new PrismaClient({ log: ["query","info"] });
 
-  while (true) {
+  // while (true) {
     await prisma.user.deleteMany();
     const user = await prisma.user.create({
       data: {
@@ -12,7 +12,7 @@ async function main() {
     });
 
     console.log(user);
-  }
+  // }
 
   await prisma.$disconnect();
 }
